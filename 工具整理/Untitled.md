@@ -2,6 +2,10 @@
 
 ngrok
 
+omnigraffle
+
+draw.io
+
 
 
 
