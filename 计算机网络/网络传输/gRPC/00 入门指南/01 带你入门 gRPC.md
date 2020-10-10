@@ -26,7 +26,7 @@ gRPC 基于 HTTP/2 标准设计，带来诸如双向流、流控、头部压缩�
 ```protobuf
 syntax = "proto3";
  
-option java_package = "com.gaoding.grpc.lib";
+option java_package = "com.example.grpc.lib";
  
 // The greeting service definition.
 service Greeter{
@@ -62,7 +62,7 @@ e.g. Service Greeter下的SayHello，S使用大写字母。
 
 # **4. 调用模型**
 
-![img](https://doc.huanleguang.com/download/attachments/81935102/image2020-3-26_10-3-38.png?version=1&modificationDate=1585806806000&api=v2)
+![image2020-3-26_10-3-38](../../../../images/01 带你入门 gRPC/image2020-3-26_10-3-38.png)
 
 **gPRC调用流程**
 
@@ -88,7 +88,7 @@ e.g. Service Greeter下的SayHello，S使用大写字母。
 
 对于gRPC调用有交互细节能有较为深入的印象，较为简单的方式就是对Client调用Server端进行抓包刨析，能够较快的了解整个过程做了什么事情。如下图：
 
-![img](https://doc.huanleguang.com/download/attachments/81935102/image2020-3-24_14-38-4.png?version=1&modificationDate=1585806806000&api=v2)
+![image2020-3-24_14-38-4](../../../../images/01 带你入门 gRPC/image2020-3-24_14-38-4.png)
 
 **1. 行为分析**
 
@@ -128,7 +128,7 @@ gRPC异常处理流程，如下所示：
 
 Status/Metadata 在服务器端和客户端的传输中，是通过 HTTP header 来实现的。
 
-**![img](https://doc.huanleguang.com/download/attachments/81935119/%E5%BC%82%E5%B8%B8%E6%B5%81%E7%A8%8B.png?version=1&modificationDate=1586410319000&api=v2)**
+![异常流程](../../../../images/01 带你入门 gRPC/异常流程-2300843.png)
 
 # **7. 超时机制**
 
@@ -158,7 +158,7 @@ Status/Metadata 在服务器端和客户端的传输中，是通过 HTTP header 
 
 首次连接与请求过程，单个连接支持多个请求，如下图
 
-![img](https://doc.huanleguang.com/download/attachments/81935102/image2020-4-1_9-57-49.png?version=1&modificationDate=1586598149000&api=v2)
+![image2020-4-1_9-57-49](../../../../images/01 带你入门 gRPC/image2020-4-1_9-57-49.png)
 
 过程分析如下：
 
@@ -171,7 +171,7 @@ Status/Metadata 在服务器端和客户端的传输中，是通过 HTTP header 
 
 心跳机制，采用PING/PONG判断当前连接是否仍然可用，如下图所示
 
-![img](https://doc.huanleguang.com/download/attachments/81935102/image2020-4-1_10-29-5.png?version=1&modificationDate=1586598149000&api=v2)
+![image2020-4-1_10-29-5](../../../../images/01 带你入门 gRPC/image2020-4-1_10-29-5.png)
 
 过程分析如下：
 
@@ -192,15 +192,14 @@ grpcurl挺强大的，可以支持各种rpc接口，还可以验证流式传输�
 在我们的mac上，安装很方便，支持HomeBrew：
 
 ```
-brew ``install` `grpcurl
+brew install grpcurl
 ```
-
-
 
 如果对go源码比较感兴趣的话，也可以直接下载源码自己编译
 
 ```
-go get github.com/fullstorydev/grpcurl` `go install github.com/fullstorydev/grpcurl/cmd/grpcurl
+go get github.com/fullstorydev/grpcurl
+go install github.com/fullstorydev/grpcurl/cmd/grpcurl
 ```
 
 ### 使用方式
@@ -210,28 +209,20 @@ grpc-server 将使用明文模式启动，所以grpccurl也是使用明文响应
 #### 查看远端地址提供的服务列表
 
 ```
-grpcurl --plaintext localhost:``9898` `list
+grpcurl --plaintext localhost:9898 list
 ```
-
-![img](https://doc.huanleguang.com/download/attachments/81935102/image2020-3-30_9-32-41.png?version=1&modificationDate=1586598149000&api=v2)
 
 #### 通过服务名称去获取方法列表
 
 ```
-grpcurl --plaintext localhost:``9898` `list Greeter
+grpcurl --plaintext localhost:9898 list Greeter
 ```
-
-![img](https://doc.huanleguang.com/download/attachments/81935102/image2020-3-30_9-34-15.png?version=1&modificationDate=1586598149000&api=v2)
 
 #### 接口访问参数传递
 
 ```
-grpcurl --plaintext -d ``'{"name": "gaoding"}'` `localhost:``9898` `Greeter/SayHello
+grpcurl --plaintext -d '{"name": "gaoding"}' localhost:9898 Greeter/SayHello
 ```
-
-![img](https://doc.huanleguang.com/download/attachments/81935102/image2020-3-30_9-34-25.png?version=1&modificationDate=1586598149000&api=v2)
-
-
 
 
 
